@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>De Escravo a Herdeiro | Jornada do Herdeiro</title>
   <meta name="theme-color" content="#11100D" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
@@ -339,6 +342,14 @@
       .bottom-inner { border-radius: 22px; }
     }
 
+
+    .info-actions { display: grid; gap: 10px; margin-top: 12px; }
+    .info-actions .pill-btn { width: 100%; }
+    .info-content { display: grid; gap: 14px; }
+    .info-content p { color: var(--muted); margin-top: 8px; }
+    .info-content ul { color: var(--muted); padding-left: 20px; margin-top: 8px; }
+    .info-content li { margin: 6px 0; }
+
   </style>
 </head>
 <body>
@@ -416,9 +427,73 @@
         <div id="historyList" class="history-list"></div>
       </div>
     </section>
+    <section id="tab-about" class="tab-page hidden">
+      <div class="card">
+        <div class="section-title">
+          <div><h2>Sobre o projeto</h2><p class="muted">Uma jornada diária para viver como filho, não como escravo.</p></div>
+          <button class="pill-btn" type="button" onclick="goTab('settings')">Voltar</button>
+        </div>
+        <div class="info-content">
+          <div class="mini-card">
+            <h3>👑 Propósito</h3>
+            <p>O projeto <strong>De Escravo a Herdeiro</strong> nasceu para ajudar pessoas a fortalecerem sua identidade em Cristo por meio de afirmações bíblicas, oração, reflexão pessoal e desafios práticos.</p>
+          </div>
+          <div class="mini-card">
+            <h3>✨ Como funciona</h3>
+            <p>A jornada é formada por 365 etapas. A pessoa pode caminhar no próprio ritmo, confirmando o foco do dia, escrevendo reflexões e acompanhando seu progresso.</p>
+          </div>
+          <div class="mini-card">
+            <h3>📖 Base espiritual</h3>
+            <p>O conteúdo foi pensado para encorajar uma vida de fé, renovação da mente, constância e crescimento espiritual, sempre apontando para a identidade de filho em Cristo.</p>
+          </div>
+          <div class="mini-card">
+            <h3>🤍 Observação importante</h3>
+            <p>Esta jornada é um apoio devocional e espiritual. Ela não substitui aconselhamento pastoral, acompanhamento profissional ou cuidados médicos quando forem necessários.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-privacy" class="tab-page hidden">
+      <div class="card">
+        <div class="section-title">
+          <div><h2>Política de privacidade</h2><p class="muted">Transparência sobre os dados da sua jornada.</p></div>
+          <button class="pill-btn" type="button" onclick="goTab('settings')">Voltar</button>
+        </div>
+        <div class="info-content">
+          <div class="mini-card">
+            <h3>🔒 Dados salvos no aparelho</h3>
+            <p>Este site não exige login, cadastro, senha ou envio de informações pessoais. Seu progresso, confirmações e reflexões ficam salvos somente no navegador do aparelho usado, por meio do armazenamento local.</p>
+          </div>
+          <div class="mini-card">
+            <h3>📝 Reflexões pessoais</h3>
+            <p>As reflexões escritas dentro da jornada não são enviadas para servidor, banco de dados ou terceiros. Elas permanecem no próprio dispositivo enquanto o navegador mantiver esses dados salvos.</p>
+          </div>
+          <div class="mini-card">
+            <h3>🧹 Limpeza dos dados</h3>
+            <p>Se você limpar o histórico/dados do navegador ou usar a opção de limpar histórico dentro do site, o progresso e as reflexões poderão ser apagados.</p>
+          </div>
+          <div class="mini-card">
+            <h3>📲 Compartilhamento</h3>
+            <p>O botão de compartilhar/copiar usa recursos do próprio navegador. O conteúdo só é compartilhado quando você escolhe fazer isso.</p>
+          </div>
+          <div class="mini-card">
+            <h3>💾 Backup</h3>
+            <p>A opção de exportar backup gera um arquivo com os dados da jornada para você guardar. Esse arquivo fica sob sua responsabilidade depois de baixado.</p>
+          </div>
+          <div class="mini-card">
+            <h3>🌐 Hospedagem</h3>
+            <p>O site pode ser hospedado em uma plataforma de páginas estáticas, como GitHub Pages. A hospedagem entrega o arquivo do site, mas a jornada continua funcionando localmente no navegador.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="tab-settings" class="tab-page hidden">
       <div class="card">
         <div class="section-title"><h2>Ajustes</h2></div>
+        <div class="mini-card"><h3>📖 Sobre o projeto</h3><p class="muted" style="margin-bottom:10px">Conheça o propósito da Jornada do Herdeiro.</p><button class="pill-btn primary" type="button" onclick="goTab('about')">Abrir sobre o projeto</button></div>
+        <div class="mini-card"><h3>🔒 Política de privacidade</h3><p class="muted" style="margin-bottom:10px">Entenda como os dados da jornada ficam salvos.</p><button class="pill-btn" type="button" onclick="goTab('privacy')">Ver política de privacidade</button></div>
         <div class="mini-card"><h3>🌓 Tema</h3><p class="muted">Use o botão no topo para alternar entre claro e escuro.</p></div>
         <div class="mini-card"><h3>📱 Como transformar em app</h3><p class="muted">Publique esta página na internet e abra no Chrome do celular. Depois toque em "Adicionar à tela inicial".</p></div>
         <div class="mini-card"><h3>🔒 Onde ficam seus dados?</h3><p class="muted">Tudo fica salvo somente neste aparelho/navegador usando armazenamento local. Não há login nem servidor.</p></div>
