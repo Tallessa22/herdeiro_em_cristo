@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>De Escravo a Herdeiro | Jornada do Herdeiro</title>
+  <meta name="theme-color" content="#11100D" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #B9955D;
+      --primary-dark: #8A6A36;
+      --accent: #C9A96A;
+      --gold: #D8BB7D;
+      --danger: #B45353;
+      --bg: #F8F6F1;
+      --card: #FFFFFF;
+      --card-soft: #F1ECE3;
+      --text: #1E1B16;
+      --muted: #746D61;
+      --border: rgba(120, 101, 72, .18);
+      --shadow: 0 22px 70px rgba(61, 48, 31, .10);
+    }
+    body.dark {
+      --bg: #11100D;
+      --card: #1D1C18;
+      --card-soft: #26241F;
+      --text: #EEE7DA;
+      --muted: #B9AD9B;
+      --border: rgba(216, 187, 125, .14);
+      --shadow: 0 24px 80px rgba(0,0,0,.42);
+    }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: radial-gradient(circle at 50% -10%, rgba(216,187,125,.10), transparent 28%), linear-gradient(180deg, var(--bg), color-mix(in srgb, var(--bg) 88%, #000));
+      color: var(--text);
+      line-height: 1.55;
+      min-height: 100vh;
+      padding-bottom: 84px;
+      transition: background .25s, color .25s;
+    }
+    .topbar { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(16px); background: color-mix(in srgb, var(--bg) 88%, transparent); border-bottom: 1px solid var(--border); }
+    .topbar-inner { max-width: 980px; margin: 0 auto; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 850; letter-spacing: -.03em; font-size: 22px; }
+    .brand-mark { background: transparent; box-shadow: none; color: var(--gold); border-radius: 0; font-size: 24px; width: auto; height: auto; display: inline; }
+    .brand small { display: block; font-weight: 650; color: var(--muted); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; font-family: system-ui, sans-serif; }
+    .icon-btn, .pill-btn { border: 1px solid var(--border); background: var(--card); color: var(--text); border-radius: 999px; padding: 10px 12px; font-weight: 750; cursor: pointer; transition: .2s; box-shadow: 0 6px 18px rgba(0,0,0,.04); letter-spacing: .02em; }
+    .pill-btn.primary, .pill-btn.accent { background: linear-gradient(135deg, #D8BB7D, #B9955D); color: #221A10; border: 0; }
+    .icon-btn:hover, .pill-btn:hover { transform: translateY(-1px); }
+    .container { max-width: 980px; margin: 0 auto; padding: 18px; }
+    .hero { margin: 16px 0 18px; padding: 24px; border: 1px solid var(--border); border-radius: 28px; background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 14%, var(--card)), color-mix(in srgb, var(--accent) 10%, var(--card))); box-shadow: var(--shadow); overflow: hidden; position: relative; }
+    .hero:after { content: ""; position: absolute; width: 190px; height: 190px; right: -70px; top: -70px; border-radius: 50%; background: rgba(255,255,255,.18); }
+    .kicker { color: var(--accent); font-weight: 850; font-size: 13px; text-transform: uppercase; letter-spacing: .08em; }
+    h1 { font-size: clamp(29px, 8vw, 56px); line-height: 1.02; margin: 8px 0 12px; letter-spacing: -.06em; font-family: Georgia, "Times New Roman", serif; }
+    h1 span { background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; color: transparent; }
+    h2 { font-family: Georgia, "Times New Roman", serif; letter-spacing: -0.025em; }
+    .hero p { max-width: 680px; color: var(--muted); font-size: 16px; }
+    .grid { display: grid; grid-template-columns: 1.45fr .8fr; gap: 18px; align-items: start; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 24px; box-shadow: var(--shadow); padding: 20px; }
+    .section-title { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+    .section-title h2 { font-size: 27px; font-weight: 700; }
+    .muted { color: var(--muted); }
+    .date { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .20em; font-weight: 750; }
+    .theme { color: var(--gold); font-weight: 850; margin-top: 4px; letter-spacing: .04em; font-size: 13px; text-transform: uppercase; }
+    .affirmation { padding: 14px 0 18px; border: 0; border-radius: 0; background: transparent; font-size: clamp(22px, 4vw, 31px); line-height: 1.18; font-weight: 600; letter-spacing: -.02em; margin: 18px 0; font-family: Georgia, "Times New Roman", serif; }
+    .mini-card { border: 1px solid var(--border); background: var(--card-soft); border-radius: 22px; padding: 14px; margin-top: 12px; }
+    .mini-card h3 { font-size: 14px; margin-bottom: 6px; color: var(--gold); letter-spacing: .06em; text-transform: uppercase; }
+    .mini-card p { line-height: 1.6; }
+    .verse-ref { color: var(--gold); font-weight: 850; font-size: 13px; margin-bottom: 4px; }
+    .verse-text { font-style: italic; color: var(--text); font-size: 14px; }
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+    .progress-wrap { margin: 12px 0; }
+    .progress-line { height: 12px; background: var(--card-soft); border: 1px solid var(--border); border-radius: 99px; overflow: hidden; }
+    .progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #D8BB7D, #B9955D); border-radius: 99px; transition: width .5s; }
+    .journey-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 7px; margin-top: 12px; }
+    .day-dot { min-height: 54px; border: 1px solid var(--border); border-radius: 14px; display: grid; place-items: center; background: var(--card); font-size: 12px; text-align: center; padding: 6px; color: var(--muted); font-weight: 800; }
+    .day-dot.done { background: rgba(216,187,125,.14); color: var(--gold); border-color: rgba(216,187,125,.30); }
+    .day-dot.today { outline: 3px solid rgba(216,187,125,.18); color: var(--gold); }
+    textarea { width: 100%; min-height: 108px; resize: vertical; border: 1px solid var(--border); border-radius: 18px; padding: 14px; background: var(--card); color: var(--text); font: inherit; outline: none; }
+    textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(83,74,183,.10); }
+    .badge-list { display: grid; gap: 10px; }
+    .badge { display: flex; align-items: center; gap: 10px; padding: 12px; border-radius: 16px; border: 1px solid var(--border); background: var(--card-soft); opacity: .55; }
+    .badge.earned { opacity: 1; background: linear-gradient(135deg, rgba(212,165,116,.20), rgba(29,158,117,.12)); }
+    .badge .emoji { font-size: 26px; }
+    .badge strong { display: block; font-size: 13px; }
+    .badge span { color: var(--muted); font-size: 12px; }
+    .history-list { display: grid; gap: 12px; }
+    .history-item { padding: 14px; border-radius: 18px; background: var(--card-soft); border: 1px solid var(--border); }
+    .history-item p { font-size: 13px; color: var(--muted); margin-top: 6px; }
+    .hidden { display: none !important; }
+    .bottom-nav { position: fixed; z-index: 30; bottom: 0; left: 0; right: 0; background: color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter: blur(16px); border-top: 1px solid var(--border); }
+    .bottom-inner { max-width: 980px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+    .nav-tab { padding: 10px 4px; display: grid; gap: 2px; place-items: center; background: none; border: 0; color: var(--muted); font-weight: 800; font-size: 11px; cursor: pointer; }
+    .nav-tab.active { color: var(--gold); }
+    .nav-tab b { font-size: 21px; line-height: 1; }
+    .toast { position: fixed; left: 50%; bottom: 82px; transform: translateX(-50%); background: #111827; color: #fff; padding: 11px 14px; border-radius: 14px; box-shadow: var(--shadow); opacity: 0; pointer-events: none; transition: .25s; z-index: 100; width: max-content; max-width: calc(100vw - 36px); text-align: center; }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(-8px); }
+    @media (max-width: 780px) {
+      .grid { grid-template-columns: 1fr !important; }
+      .topbar-inner { padding: 12px; }
+      .brand { font-size: 18px; }
+      .brand-mark { width: 34px; height: 34px; }
+      .hero { padding: 20px; border-radius: 24px; }
+      .card { padding: 18px; border-radius: 24px; }
+      .section-title h2 { font-size: 24px; }
+      .brand small { font-size: 9px; letter-spacing: .10em; }
+      .affirmation { font-size: 22px; line-height: 1.35; }
+      .actions { grid-template-columns: 1fr !important; }
+      .journey-days { grid-template-columns: repeat(4, 1fr) !important; }
+      .badge { justify-content: flex-start; text-align: left; }
+      .badge .emoji { min-width: 34px; }
+    }
+    @media (max-width: 430px) {
+      .topbar-inner { padding: 12px 14px; }
+      .brand { gap: 8px; }
+      .brand-mark { width: 32px; height: 32px; font-size: 22px; }
+      .section-title { align-items: flex-start; }
+      .pill-btn { padding: 10px 14px; }
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap');
+    .entry-screen { position: fixed; inset: 0; z-index: 999; display: grid; place-items: center; padding: 24px; color: #F1EADB; background: linear-gradient(rgba(7, 6, 4, .78), rgba(7, 6, 4, .86)), radial-gradient(circle at 62% 48%, rgba(216,187,125,.20), transparent 0 17%, rgba(0,0,0,0) 30%), linear-gradient(115deg, #050504 0%, #15120E 42%, #2B2117 62%, #090806 100%); overflow: hidden; }
+    .entry-screen::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.70), rgba(0,0,0,.20) 46%, rgba(0,0,0,.74)), radial-gradient(ellipse at 70% 52%, rgba(255,255,255,.06), transparent 0 14%, transparent 28%), repeating-linear-gradient(90deg, rgba(255,255,255,.025) 0 1px, transparent 1px 75px); opacity: .95; pointer-events: none; }
+    .entry-screen::after { content: ''; position: absolute; width: min(72vw, 760px); height: min(36vw, 310px); left: 50%; bottom: 4%; transform: translateX(-50%) rotate(-2deg); background: linear-gradient(180deg, rgba(220,210,185,.09), rgba(220,210,185,.015)); border: 1px solid rgba(216,187,125,.08); border-radius: 50% 50% 18px 18px; filter: blur(.2px); opacity: .65; pointer-events: none; }
+    .entry-card { position: relative; z-index: 2; width: min(100%, 430px); padding: 38px 34px 34px; text-align: center; border-radius: 24px; border: 1px solid rgba(216,187,125,.18); background: rgba(34, 31, 26, .78); backdrop-filter: blur(18px); box-shadow: 0 30px 110px rgba(0,0,0,.58); }
+    .entry-crown { font-size: 32px; color: #D8BB7D; margin-bottom: 18px; line-height: 1; }
+    .entry-title { font-size: clamp(31px, 8vw, 43px); line-height: .98; font-weight: 700; letter-spacing: -.035em; margin-bottom: 12px; color: #F5EEDD; font-family: Georgia, "Times New Roman", serif; }
+    .entry-subtitle { color: rgba(245,238,221,.78); font-size: 14px; line-height: 1.55; max-width: 320px; margin: 0 auto 28px; }
+    .entry-btn { width: 100%; border: 0; border-radius: 999px; padding: 14px 18px; background: linear-gradient(135deg, #D8BB7D, #B9955D); color: #21180E; font-weight: 800; letter-spacing: .02em; cursor: pointer; box-shadow: 0 12px 30px rgba(185,149,93,.24); }
+    .entry-note { margin-top: 22px; color: rgba(245,238,221,.62); font-size: 13px; }
+    .entry-screen.hide { opacity: 0; visibility: hidden; pointer-events: none; transition: .35s ease; }
+  
+
+    /* Refinamento visual premium — sem alterar a estrutura */
+    :root {
+      --card-tint: rgba(255,255,255,.72);
+      --card-soft-tint: rgba(255,255,255,.56);
+      --glass-stroke: rgba(255,255,255,.10);
+    }
+    body.dark {
+      --card-tint: rgba(29, 28, 24, .86);
+      --card-soft-tint: rgba(38, 36, 31, .84);
+      --glass-stroke: rgba(255,255,255,.05);
+    }
+    body {
+      letter-spacing: .01em;
+      background:
+        radial-gradient(circle at 8% 12%, rgba(216,187,125,.12), transparent 0 24%),
+        radial-gradient(circle at 88% 18%, rgba(185,149,93,.10), transparent 0 20%),
+        linear-gradient(180deg, color-mix(in srgb, var(--bg) 96%, #fff 4%), color-mix(in srgb, var(--bg) 88%, #000));
+    }
+    h1, h2, .entry-title, .affirmation { font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif; }
+    .topbar {
+      background: color-mix(in srgb, var(--bg) 78%, transparent);
+      box-shadow: 0 10px 28px rgba(0,0,0,.06);
+    }
+    .brand {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+    }
+    .brand small {
+      margin-top: 2px;
+      font-size: 10px;
+      letter-spacing: .14em;
+    }
+    .icon-btn, .pill-btn {
+      min-height: 44px;
+      padding: 11px 16px;
+      border-color: color-mix(in srgb, var(--border) 76%, rgba(255,255,255,.10));
+      box-shadow: 0 10px 24px rgba(0,0,0,.07), inset 0 1px 0 rgba(255,255,255,.08);
+    }
+    .icon-btn {
+      background: color-mix(in srgb, var(--card) 82%, transparent);
+      backdrop-filter: blur(12px);
+    }
+    .pill-btn.primary, .pill-btn.accent {
+      background: linear-gradient(135deg, #E2C98F 0%, #D5B16E 44%, #B78846 100%);
+      box-shadow: 0 14px 28px rgba(185,149,93,.24), inset 0 1px 0 rgba(255,255,255,.30);
+    }
+    .icon-btn:hover, .pill-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 30px rgba(0,0,0,.10), inset 0 1px 0 rgba(255,255,255,.12);
+    }
+    .pill-btn:disabled {
+      opacity: .72;
+      cursor: default;
+      transform: none;
+    }
+    .hero {
+      padding: 30px;
+      border-radius: 32px;
+      border-color: color-mix(in srgb, var(--border) 82%, rgba(255,255,255,.10));
+      background:
+        radial-gradient(circle at 80% 18%, rgba(255,255,255,.14), transparent 0 18%),
+        linear-gradient(145deg, color-mix(in srgb, var(--primary) 18%, var(--card)), color-mix(in srgb, var(--accent) 12%, var(--card)) 52%, color-mix(in srgb, var(--card) 90%, #fff));
+      box-shadow: 0 28px 80px rgba(61, 48, 31, .12), inset 0 1px 0 rgba(255,255,255,.18);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg, rgba(255,255,255,.08), transparent 28%, transparent 72%, rgba(255,255,255,.05));
+      pointer-events: none;
+    }
+    .hero:after { opacity: .8; }
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border: 1px solid rgba(216,187,125,.18);
+      border-radius: 999px;
+      background: rgba(255,255,255,.10);
+      backdrop-filter: blur(8px);
+    }
+    .hero p {
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 720px;
+    }
+    .card {
+      background: color-mix(in srgb, var(--card) 88%, transparent);
+      backdrop-filter: blur(16px);
+      border-color: color-mix(in srgb, var(--border) 82%, rgba(255,255,255,.10));
+      box-shadow: 0 24px 70px rgba(61,48,31,.08), inset 0 1px 0 var(--glass-stroke);
+    }
+    .section-title { margin-bottom: 18px; }
+    .section-title h2 { font-size: 30px; }
+    .progress-wrap {
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,.05), transparent), var(--card-soft);
+    }
+    .progress-count {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text);
+      opacity: .88;
+    }
+    .progress-line {
+      height: 14px;
+      margin-top: 10px;
+      background: color-mix(in srgb, var(--card-soft) 90%, #000 10%);
+      box-shadow: inset 0 1px 4px rgba(0,0,0,.08);
+    }
+    .progress-bar {
+      background: linear-gradient(90deg, #E7D29B, #C89A53 58%, #B5823F);
+      box-shadow: 0 0 16px rgba(216,187,125,.28);
+    }
+    .day-dot {
+      min-height: 58px;
+      border-radius: 18px;
+      background: color-mix(in srgb, var(--card) 92%, transparent);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+    }
+    .day-dot.today {
+      outline: none;
+      border-color: rgba(216,187,125,.45);
+      box-shadow: 0 0 0 3px rgba(216,187,125,.12), inset 0 1px 0 rgba(255,255,255,.08);
+    }
+    .mini-card, .badge, .history-item {
+      background: linear-gradient(180deg, rgba(255,255,255,.04), transparent), var(--card-soft);
+      border-color: color-mix(in srgb, var(--border) 84%, rgba(255,255,255,.08));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+    }
+    .mini-card {
+      padding: 16px;
+      border-radius: 20px;
+    }
+    .mini-card h3, .verse-ref {
+      letter-spacing: .08em;
+    }
+    .affirmation {
+      font-size: clamp(24px, 4.2vw, 34px);
+      line-height: 1.16;
+      margin: 22px 0;
+    }
+    textarea {
+      background: color-mix(in srgb, var(--card) 90%, transparent);
+      backdrop-filter: blur(10px);
+      min-height: 136px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+    }
+    textarea::placeholder { color: color-mix(in srgb, var(--muted) 88%, transparent); }
+    .badge {
+      border-radius: 18px;
+      padding: 14px;
+    }
+    .history-item { border-radius: 20px; }
+    .bottom-nav {
+      background: transparent;
+      border-top: 0;
+      padding: 0 12px 12px;
+    }
+    .bottom-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      backdrop-filter: blur(18px);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: 0 18px 48px rgba(0,0,0,.12);
+      padding: 4px;
+    }
+    .nav-tab {
+      border-radius: 18px;
+      padding: 11px 4px;
+      transition: .2s ease;
+    }
+    .nav-tab.active {
+      background: rgba(216,187,125,.12);
+      color: var(--gold);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+    }
+    .nav-tab b { font-size: 20px; }
+    .toast {
+      background: rgba(17, 24, 39, .92);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .entry-card {
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(36,32,26,.78), rgba(23,20,16,.84));
+      box-shadow: 0 30px 120px rgba(0,0,0,.58), inset 0 1px 0 rgba(255,255,255,.08);
+    }
+    .entry-btn {
+      background: linear-gradient(135deg, #E2C98F 0%, #D1A85D 54%, #B5833D 100%);
+      box-shadow: 0 18px 36px rgba(185,149,93,.26), inset 0 1px 0 rgba(255,255,255,.28);
+    }
+    @media (max-width: 780px) {
+      .brand { font-size: 20px; }
+      .hero { padding: 24px; border-radius: 28px; }
+      .section-title h2 { font-size: 26px; }
+      .bottom-nav { padding: 0 10px 10px; }
+      .bottom-inner { border-radius: 22px; }
+    }
+
+  </style>
+</head>
+<body>
+  <section class="entry-screen" id="entryScreen" aria-label="Tela inicial">
+    <div class="entry-card">
+      <div class="entry-crown">♕</div>
+      <h1 class="entry-title">De Escravo a Herdeiro</h1>
+      <p class="entry-subtitle">Uma jornada diária de 365 etapas para renovar a mente, fortalecer a fé e viver como filho em Cristo.</p>
+      <button class="entry-btn" type="button" onclick="enterJourney()">Entrar na jornada</button>
+      <div class="entry-note">Sem login. Seus registros ficam salvos neste aparelho.</div>
+    </div>
+  </section>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-mark">👑</div>
+        <div>De Escravo a Herdeiro <small>Jornada diária de renovação da mente</small></div>
+      </div>
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Alternar tema">🌙</button>
+    </div>
+  </header>
+  <main class="container">
+    <section class="hero">
+      <div class="kicker">Jornada do Herdeiro</div>
+      <h1>Viva como <span>filho</span>, não como escravo.</h1>
+      <p>Afirmações bíblicas, desafios práticos, oração e reflexão pessoal para fortalecer sua identidade em Cristo.</p>
+    </section>
+    <section id="tab-home" class="tab-page">
+      <div class="grid">
+        <div class="card">
+          <div class="section-title">
+            <div><h2>Seu progresso</h2><p class="muted">Uma nova mentalidade, uma etapa por vez.</p></div>
+            <button class="pill-btn primary" onclick="goTab('today')">Ver hoje</button>
+          </div>
+          <div class="progress-wrap">
+            <div class="progress-count" id="progressLabel">0 de 365 dias completos</div>
+            <div class="progress-line"><div class="progress-bar" id="progressBar"></div></div>
+          </div>
+          <div class="journey-days" id="journeyDays"></div>
+          <div class="mini-card"><h3>🔥 Próximo passo</h3><p id="nextStep" class="muted">Abra a afirmação de hoje e confirme seu foco.</p></div>
+        </div>
+        <aside class="card"><div class="section-title"><h2>Conquistas</h2></div><div class="badge-list" id="badges"></div></aside>
+      </div>
+    </section>
+    <section id="tab-today" class="tab-page hidden">
+      <div class="grid">
+        <div class="card">
+          <div class="date" id="todayDate"></div>
+          <div class="theme" id="todayTheme"></div>
+          <div class="affirmation" id="affirmationText"></div>
+          <div class="mini-card"><h3>📖 Base bíblica</h3><div class="verse-ref" id="verseRef"></div><p class="verse-text" id="verseText"></p></div>
+          <div class="mini-card"><h3>🧭 Devocional curto</h3><p id="devotionalText" class="muted"></p></div>
+          <div class="mini-card"><h3>🎯 Desafio prático do dia</h3><p id="challengeText" class="muted"></p></div>
+          <div class="mini-card"><h3>🙏 Oração</h3><p id="prayerText" class="muted"></p></div>
+          <div class="actions">
+            <button class="pill-btn accent" id="confirmBtn" onclick="confirmFocus()">✓ Confirmei meu foco</button>
+            <button class="pill-btn" onclick="shareToday()">📲 Compartilhar/copiar</button>
+          </div>
+        </div>
+        <aside class="card">
+          <div class="section-title"><h2>Minha reflexão</h2></div>
+          <p class="muted" style="margin-bottom:10px">O que Deus falou com você hoje?</p>
+          <textarea id="reflectionText" placeholder="Escreva aqui sua reflexão de hoje..."></textarea>
+          <button class="pill-btn primary" style="width:100%; margin-top:10px" onclick="saveReflection()">Salvar reflexão</button>
+          <div class="mini-card"><h3>💡 Dica</h3><p class="muted">Não precisa escrever bonito. Escreva sincero. A constância vale mais que perféição.</p></div>
+        </aside>
+      </div>
+    </section>
+    <section id="tab-history" class="tab-page hidden">
+      <div class="card">
+        <div class="section-title">
+          <div><h2>Histórico da jornada</h2><p class="muted">Suas afirmações, desafios e reflexões salvas.</p></div>
+          <button class="pill-btn" onclick="clearHistory()">Limpar</button>
+        </div>
+        <div id="historyList" class="history-list"></div>
+      </div>
+    </section>
+    <section id="tab-settings" class="tab-page hidden">
+      <div class="card">
+        <div class="section-title"><h2>Ajustes</h2></div>
+        <div class="mini-card"><h3>🌓 Tema</h3><p class="muted">Use o botão no topo para alternar entre claro e escuro.</p></div>
+        <div class="mini-card"><h3>📱 Como transformar em app</h3><p class="muted">Publique esta página na internet e abra no Chrome do celular. Depois toque em "Adicionar à tela inicial".</p></div>
+        <div class="mini-card"><h3>🔒 Onde ficam seus dados?</h3><p class="muted">Tudo fica salvo somente neste aparelho/navegador usando armazenamento local. Não há login nem servidor.</p></div>
+        <div class="mini-card"><h3>💾 Backup simples</h3><p class="muted" style="margin-bottom:10px">Você pode baixar um arquivo com seu progresso e reflexões para guardar.</p><button class="pill-btn primary" type="button" onclick="exportBackup()">Exportar meu backup</button></div>
+      </div>
+    </section>
+  </main>
+  <nav class="bottom-nav"><div class="bottom-inner">
+    <button class="nav-tab active" data-tab="home" onclick="goTab('home')"><b>🏠</b>Início</button>
+    <button class="nav-tab" data-tab="today" onclick="goTab('today')"><b>✨</b>Hoje</button>
+    <button class="nav-tab" data-tab="history" onclick="goTab('history')"><b>📚</b>Histórico</button>
+    <button class="nav-tab" data-tab="settings" onclick="goTab('settings')"><b>⚙️</b>Ajustes</button>
+  </div></nav>
+  <div class="toast" id="toast"></div>
+<script>
+// JORNADA COMPLETA DE 365 DIAS - 14 primeiros dias detalhados
+const journey = [
+  {
+    "day": 1,
+    "theme": "Liberdade do medo",
+    "affirmation": "Eu não sou mais escravo do medo que me paralisava. O amor perfeito de Deus expulsa todo temor da minha vida. Não caminho pela ansiedade; caminho pela fé. Sou filho amado, guiado e guardado por Deus.",
+    "verseRef": "2 Timóteo 1:7",
+    "verse": "Deus não nos deu espírito de covardia, mas de poder, amor e equilíbrio.",
+    "devotional": "O medo tenta fazer você viver como servo acuado, mas o evangelho te chama para viver como filho. Hoje, não alimente a voz que paralisa. Dê um passo pequeno, mas real, confiando que Deus está com você.",
+    "challenge": "Faça hoje uma atitude que você estava adiando por insegurança. Pode ser uma conversa, uma decisão ou uma pequena tarefa.",
+    "prayer": "Senhor, eu rejeito o medo que tenta dominar minha mente. Renova meu coração e me ensina a caminhar como filho amado, cheio de fé, coragem e equilíbrio. Amém."
+  },
+  {
+    "day": 2,
+    "theme": "Filiação divina",
+    "affirmation": "Eu não sou órfão, rejeitado ou abandonado. Em Cristo, fui recebido como filho. Meu Pai me conhece, me ama e cuida de mim. Não preciso viver buscando validação, porque minha identidade está firmada nele.",
+    "verseRef": "Romanos 8:15",
+    "verse": "Recebemos o Espírito de adoção, por meio do qual clamamos: Aba, Pai.",
+    "devotional": "A mentalidade de órfão vive tentando merecer amor. A mentalidade de filho descansa no amor que já recebeu. Hoje, pare de tentar provar seu valor e aprenda a viver a partir da aceitação do Pai.",
+    "challenge": "Ore por 5 minutos chamando Deus de Pai. Fale com sinceridade, como filho que se aproxima, não como estranho distante.",
+    "prayer": "Pai, ajuda-me a abandonar a sensação de abandono e rejeição. Ensina-me a viver como filho recebido, amado e cuidado por ti. Amém."
+  },
+  {
+    "day": 3,
+    "theme": "Valor em Cristo",
+    "affirmation": "Meu valor não vem do meu desempenho, da opinião das pessoas ou dos meus erros. Fui comprado por alto preço. A cruz revela quanto Deus me amou. Por isso, rejeito a mentira da inutilidade e assumo meu valor em Cristo.",
+    "verseRef": "1 Coríntios 6:20",
+    "verse": "Vocês foram comprados por preço; glorifiquem a Deus com a vida de vocês.",
+    "devotional": "O mundo mede valor por resultado, aparência e aprovação. Deus revelou seu valor entregando Cristo. Quem entende a cruz não vive mais implorando por aceitação humana.",
+    "challenge": "Escreva uma mentira que você acreditava sobre si mesmo e, abaixo dela, escreva uma verdade bíblica para substituir.",
+    "prayer": "Senhor, cura minha visão sobre mim mesmo. Que eu me enxergue pela cruz, não pelas feridas, rejeições ou comparações. Amém."
+  },
+  {
+    "day": 4,
+    "theme": "Graça e perdão",
+    "affirmation": "Eu não sou mais definido pela culpa. Em Cristo, recebi perdão, graça e nova vida. Meu passado não governa meu futuro. A acusação perde força onde a graça de Deus reina.",
+    "verseRef": "Efésios 1:7",
+    "verse": "Em Cristo temos redenção e perdão, segundo a riqueza da graça de Deus.",
+    "devotional": "A culpa prende a alma no ontem. A graça chama você para caminhar em novidade de vida. Arrependimento verdadeiro não é viver se punindo; é voltar para Deus e andar em transformação.",
+    "challenge": "Entregue em oração uma culpa específica. Depois, escreva: ‘Em Cristo, eu recebo graça para recomeçar’. ",
+    "prayer": "Jesus, obrigado pela tua graça. Eu abandono a condenação e recebo teu perdão. Conduz-me em arrependimento, liberdade e vida nova. Amém."
+  },
+  {
+    "day": 5,
+    "theme": "Propósito",
+    "affirmation": "Minha vida tem propósito. Não estou aqui por acaso. Deus me chamou para servir, crescer, amar e frutificar. Eu rejeito a passividade e caminho em direção ao chamado que Deus colocou diante de mim.",
+    "verseRef": "2 Timóteo 1:9",
+    "verse": "Deus nos salvou e nos chamou com santa vocação, conforme seu propósito e graça.",
+    "devotional": "Propósito não é só palco, cargo ou reconhecimento. Propósito começa em obedecer a Deus hoje, no lugar onde você está, com aquilo que você já recebeu.",
+    "challenge": "Faça uma ação prática para servir alguém hoje: uma mensagem, uma ajuda, uma oração ou uma atitude de generosidade.",
+    "prayer": "Senhor, abre meus olhos para o propósito de hoje. Que eu não viva distraído, mas disponível para te obedecer e servir pessoas. Amém."
+  },
+  {
+    "day": 6,
+    "theme": "Herança espiritual",
+    "affirmation": "Eu não vivo como mendigo espiritual. Em Cristo, recebi bênçãos espirituais, acesso ao Pai e herança eterna. Minha vida não é guiada pela escassez, mas pela suficiência de Deus.",
+    "verseRef": "Efésios 1:3",
+    "verse": "Deus nos abençoou com todas as bênçãos espirituais em Cristo.",
+    "devotional": "A mentalidade de escravo só enxerga falta. A mentalidade de herdeiro reconhece que, em Cristo, já recebeu o maior tesouro: comunhão com Deus, salvação e esperança eterna.",
+    "challenge": "Liste três bênçãos espirituais que você já recebeu em Cristo e agradeça a Deus por cada uma delas.",
+    "prayer": "Pai, ensina-me a viver com gratidão e consciência da herança que recebi em Cristo. Livra-me da mentalidade de escassez. Amém."
+  },
+  {
+    "day": 7,
+    "theme": "Vida de herdeiro",
+    "affirmation": "Eu vivo como filho e herdeiro em Cristo. Não volto para a escravidão do medo, da culpa, da rejeição ou da mentira. Minha mente está sendo renovada pela Palavra, e minha vida pertence ao Reino de Deus.",
+    "verseRef": "Romanos 8:17",
+    "verse": "Se somos filhos, também somos herdeiros; herdeiros de Deus e co-herdeiros com Cristo.",
+    "devotional": "A jornada não termina no sétimo dia; ela começa uma nova forma de caminhar. Viver como herdeiro é lembrar todos os dias que sua identidade vem de Deus, não das circunstâncias.",
+    "challenge": "Compartilhe com alguém uma verdade que marcou sua jornada. Encoraje outra pessoa com aquilo que Deus fortaleceu em você.",
+    "prayer": "Senhor, obrigado por me chamar de filho e herdeiro. Ajuda-me a permanecer nessa verdade e a viver para tua glória todos os dias. Amém."
+  },
+  {
+    "day": 8,
+    "theme": "Transformação pela renovação",
+    "affirmation": "Minha mente está sendo transformada dia após dia. Não me conformo com os padrões deste mundo. Penso nas coisas do alto, não nas terrenas. Minha maneira de pensar reflete a mente de Cristo.",
+    "verseRef": "Romanos 12:2",
+    "verse": "Sejam transformados pela renovação da mente, para experimentar a vontade de Deus.",
+    "devotional": "A transformação começa na mente. Cada pensamento cativo a Cristo é uma vitória. Hoje, escolha conscientemente pensar naquilo que é verdadeiro, nobre e puro.",
+    "challenge": "Identifique um padrão de pensamento negativo e substitua por uma verdade bíblica. Repita essa verdade sempre que o pensamento surgir.",
+    "prayer": "Senhor, renova minha mente. Que eu pense nas coisas do céu, não nas da terra. Transforma-me de glória em glória. Amém."
+  },
+  {
+    "day": 9,
+    "theme": "Disciplina dos pensamentos",
+    "affirmation": "Tenho autoridade em Cristo para levar cativo todo pensamento. Não sou refém da minha própria mente. Escolho meditar na Palavra do Senhor e filtrar meus pensamentos pela verdade.",
+    "verseRef": "2 Coríntios 10:5",
+    "verse": "Levamos cativo todo pensamento para torná-lo obediente a Cristo.",
+    "devotional": "Pensamentos são como visitantes: você pode escolher quais deixar ficar. Não acredite em tudo que pensa. Filtre pela Palavra.",
+    "challenge": "Durante o dia, sempre que surgir um pensamento de derrota, diga em voz alta: ‘Esse pensamento não vai governar minha mente. Minha mente pertence a Cristo’. ",
+    "prayer": "Espírito Santo, guarda minha mente. Ensina-me a discernir pensamentos que vêm de ti e pensamentos que não edificam. Amém."
+  },
+  {
+    "day": 10,
+    "theme": "Identidade nas Escrituras",
+    "affirmation": "A Palavra de Deus é o espelho onde vejo minha verdadeira identidade. Não me defino pelas circunstâncias, mas pelo que Deus diz sobre mim nas Escrituras.",
+    "verseRef": "Tiago 1:23-25",
+    "verse": "Quem prática a Palavra não se esquece de quem é diante de Deus.",
+    "devotional": "O mundo diz uma coisa, Deus diz outra. Em quem você vai acreditar? A Palavra é mais real que suas emoções e mais firme que suas fases.",
+    "challenge": "Escolha três versículos sobre sua identidade em Cristo e escreva-os em lugares que você verá durante o dia.",
+    "prayer": "Pai, que tua Palavra seja lâmpada para meus pés. Que eu me veja como tu me vês. Amém."
+  },
+  {
+    "day": 11,
+    "theme": "Verdade sobre mentiras",
+    "affirmation": "Rejeito as mentiras que o inimigo sussurra. Não sou o que fiz, o que fizeram comigo ou o que dizem sobre mim. Sou o que Deus declara que sou.",
+    "verseRef": "João 8:32",
+    "verse": "Vocês conhecerão a verdade, e a verdade os libertará.",
+    "devotional": "O inimigo repete a mesma mentira até a pessoa acreditar. Hoje, confronte cada mentira com a verdade de Deus.",
+    "challenge": "Escreva uma mentira que você já acreditou sobre si mesma. Ao lado, escreva três verdades bíblicas que a contradizem.",
+    "prayer": "Jesus, tu és a Verdade. Liberta-me das mentiras que ainda tento carregar. Que eu conheça a verdade e seja verdadeiramente livre. Amém."
+  },
+  {
+    "day": 12,
+    "theme": "Mente de Cristo",
+    "affirmation": "Tenho a mente de Cristo. Não penso como o mundo pensa. Discerno as coisas pelo Espírito. Minha sabedoria vem do alto, e minha vida é guiada pela vontade de Deus.",
+    "verseRef": "1 Coríntios 2:16",
+    "verse": "Nós temos a mente de Cristo.",
+    "devotional": "A mente de Cristo em você significa que você pode aprender a enxergar a vida pela perspectiva de Deus. Não subestime a sabedoria do Espírito Santo em você.",
+    "challenge": "Antes de tomar uma decisão hoje, pare e pergunte: ‘Espírito Santo, qual é a tua perspectiva sobre isso?’. ",
+    "prayer": "Espírito Santo, revela-me a mente de Cristo. Que eu pense como Jesus pensaria e escolha como filho de Deus. Amém."
+  },
+  {
+    "day": 13,
+    "theme": "Guarda do coração",
+    "affirmation": "Guardo meu coração acima de tudo. Protejo minha vida interior. Não permito que raízes de amargura cresçam em mim. Meu coração pertence ao Senhor.",
+    "verseRef": "Provérbios 4:23",
+    "verse": "Acima de tudo, guarde o seu coração, pois dele procedem as fontes da vida.",
+    "devotional": "O coração é o jardim da alma. O que você permite entrar, com o tempo, começa a produzir frutos. Hoje, plante sementes de vida.",
+    "challenge": "Identifique uma porta da sua mente que precisa de mais guarda: olhos, ouvidos, conversas ou redes sociais. Estabeleça um limite prático hoje.",
+    "prayer": "Senhor, guarda meu coração. Que nada crie raízes em mim sem passar pela tua presença. Amém."
+  },
+  {
+    "day": 14,
+    "theme": "Descanso mental",
+    "affirmation": "Descanso minha mente em Deus. Não preciso ter todas as respostas. Entrego minhas ansiedades ao Senhor e recebo sua paz, que guarda meu coração e meus pensamentos.",
+    "verseRef": "Filipenses 4:6-7",
+    "verse": "Apresentem seus pedidos a Deus, e a paz dele guardará o coração e a mente de vocês.",
+    "devotional": "A ansiedade tenta controlar o incontrolável. A paz vem quando você entrega a Deus aquilo que não consegue carregar sozinha.",
+    "challenge": "Reserve 10 minutos hoje para ficar em silêncio diante de Deus, sem pedir nada, apenas descansando na presença dele.",
+    "prayer": "Pai, entrego-te minhas preocupações. Recebo tua paz. Descanso em ti. Amém."
+  },
+  {
+    "day": 15,
+    "theme": "Amor incondicional",
+    "affirmation": "Eu sou amado por Deus antes de acertar, antes de produzir e antes de provar qualquer coisa. O amor do Pai não depende da minha performance. Em Cristo, eu descanso no amor que me alcançou primeiro.",
+    "verseRef": "1 João 3:1",
+    "verse": "O Pai nos concedeu grande amor, a ponto de sermos chamados filhos de Deus.",
+    "devotional": "O amor de Deus não é um prêmio para quem nunca erra; é a base que sustenta quem foi recebido como filho. Quando você entende esse amor, para de viver tentando comprar aceitação e começa a obedecer com gratidão.",
+    "challenge": "Repita três vezes durante o dia: ‘Eu sou amado por Deus em Cristo’. Depois, anote como essa verdade confronta sua insegurança.",
+    "prayer": "Pai, firma meu coração no teu amor. Que eu não viva tentando merecer o que Cristo já me concedeu pela graça. Amém."
+  },
+  {
+    "day": 16,
+    "theme": "Aceitação em Cristo",
+    "affirmation": "Em Cristo, eu sou aceito. Não preciso me esconder atrás de máscaras, nem viver refém da aprovação das pessoas. Deus me recebeu pela graça e me chama para andar em verdade.",
+    "verseRef": "Efésios 1:6",
+    "verse": "Deus nos fez aceitos no Amado, para louvor da sua graça.",
+    "devotional": "A rejeição ensina a alma a se defender. A aceitação em Cristo ensina a alma a descansar. Hoje, permita que a graça fale mais alto que as lembranças de exclusão, crítica ou comparação.",
+    "challenge": "Observe uma situação em que você costuma buscar aprovação. Ore antes de agir e escolha fazer o que é correto diante de Deus.",
+    "prayer": "Senhor, cura em mim a necessidade de agradar todos. Que minha segurança esteja na aceitação que recebi em Cristo. Amém."
+  },
+  {
+    "day": 17,
+    "theme": "Nova criatura",
+    "affirmation": "Eu não sou prisioneiro da antiga versão de mim. Em Cristo, sou nova criatura. O que passou não tem autoridade final sobre quem Deus está formando em mim hoje.",
+    "verseRef": "2 Coríntios 5:17",
+    "verse": "Se alguém está em Cristo, é nova criação; as coisas antigas passaram.",
+    "devotional": "Deus não remenda uma identidade quebrada apenas por fora; ele gera vida nova por dentro. Crescimento leva tempo, mas a verdade já foi estabelecida: em Cristo, você não é mais definido pelo velho caminho.",
+    "challenge": "Escreva uma atitude da ‘velha mentalidade’ que você precisa abandonar e uma atitude da ‘nova criatura’ que você vai práticar hoje.",
+    "prayer": "Jesus, obrigado porque em ti existe vida nova. Ajuda-me a abandonar velhos padrões e a caminhar como nova criatura. Amém."
+  },
+  {
+    "day": 18,
+    "theme": "Sem condenação",
+    "affirmation": "Eu não vivo debaixo da condenação. Em Cristo, há perdão, direção e transformação. O Espírito Santo me corrige para curar, não para me destruir.",
+    "verseRef": "Romanos 8:1",
+    "verse": "Agora não há condenação para os que estão em Cristo Jesus.",
+    "devotional": "Existe diferença entre convicção e condenação. A convicção te aproxima de Deus e te conduz ao arrependimento. A condenação te empurra para a vergonha e o isolamento. Hoje, escolha correr para o Pai.",
+    "challenge": "Quando vier uma acusação, responda com esta verdade: ‘Em Cristo, eu posso me arrepender, receber perdão e continuar’. ",
+    "prayer": "Pai, ensina-me a ouvir tua correção sem me afundar na culpa. Que eu viva em arrependimento, graça e liberdade. Amém."
+  },
+  {
+    "day": 19,
+    "theme": "Misericórdia para recomeçar",
+    "affirmation": "As misericórdias do Senhor se renovam sobre mim. Um erro não encerra minha jornada. Hoje eu posso recomeçar com humildade, fé e obediência.",
+    "verseRef": "Lamentações 3:22-23",
+    "verse": "As misericórdias do Senhor se renovam a cada manhã.",
+    "devotional": "Recomeçar não é fingir que nada aconteceu. Recomeçar é reconhecer a graça, levantar-se com sinceridade e dar o próximo passo com Deus. O Pai não despreza um coração quebrantado.",
+    "challenge": "Escolha uma área que você vinha adiando. Dê um passo pequeno e real hoje, sem esperar estar tudo perfeito.",
+    "prayer": "Senhor, obrigado por tua misericórdia renovada. Dá-me humildade para recomeçar e constância para permanecer. Amém."
+  },
+  {
+    "day": 20,
+    "theme": "Cuidado do Pai",
+    "affirmation": "Meu Pai cuida de mim. Não preciso viver dominado pela preocupação. Eu faço minha parte com responsabilidade e entrego ao Senhor aquilo que está além do meu controle.",
+    "verseRef": "Mateus 6:26",
+    "verse": "O Pai celestial sustenta as aves; vocês valem muito mais para ele.",
+    "devotional": "A preocupação tenta convencer você de que está sozinha. Jesus ensina o contrário: o Pai vê, sabe e cuida. Isso não elimina responsabilidades, mas remove o peso de carregar tudo como se Deus não estivesse presente.",
+    "challenge": "Liste três preocupações atuais. Ao lado de cada uma, escreva: ‘Pai, eu entrego isso aos teus cuidados’. ",
+    "prayer": "Pai, eu confio no teu cuidado. Ajuda-me a agir com sabedoria sem carregar pesos que pertencem a ti. Amém."
+  },
+  {
+    "day": 21,
+    "theme": "Gratidão de filho",
+    "affirmation": "Eu escolho lembrar dos benefícios do Senhor. A gratidão abre meus olhos para a bondade de Deus e combate a murmuração que enfraquece minha fé.",
+    "verseRef": "Salmos 103:2",
+    "verse": "Bendiga ao Senhor a minha alma, e não se esqueça de nenhum de seus benefícios.",
+    "devotional": "A gratidão não nega as lutas; ela reconhece que Deus continua presente nelas. Um coração grato enxerga sinais de cuidado onde antes só via falta.",
+    "challenge": "Anote cinco motivos de gratidão hoje. Se puder, envie uma mensagem agradecendo alguém que Deus usou na sua vida.",
+    "prayer": "Senhor, cura meus olhos da ingratidão. Ensina-me a perceber tua bondade nos detalhes e a viver com um coração grato. Amém."
+  },
+  {
+    "day": 22,
+    "theme": "Palavra que limpa",
+    "affirmation": "A Palavra de Cristo limpa minha mente, corrige meus caminhos e fortalece minha identidade. Eu recebo a verdade de Deus como alimento para a alma.",
+    "verseRef": "João 15:3",
+    "verse": "Vocês já estão limpos pela palavra que Cristo falou.",
+    "devotional": "A Palavra não serve apenas para informar; ela forma Cristo em nós. Quando você se expõe à verdade de Deus, pensamentos antigos perdem força e novos caminhos começam a nascer.",
+    "challenge": "Leia um pequeno trecho bíblico com calma. Depois escreva uma frase: ‘Hoje Deus me lembrou que...’. ",
+    "prayer": "Jesus, lava minha mente com tua Palavra. Que a verdade entre em lugares onde a mentira criou raízes. Amém."
+  },
+  {
+    "day": 23,
+    "theme": "Obediência por amor",
+    "affirmation": "Eu obedeço a Deus não para comprar seu amor, mas porque já fui amado. Minha obediência é resposta de filho, não medo de escravo.",
+    "verseRef": "João 14:15",
+    "verse": "Quem ama a Cristo guarda os seus mandamentos.",
+    "devotional": "A mentalidade de escravo obedece por pavor. A mentalidade de filho obedece por amor e confiança. Deus não usa a obediência para te esmagar, mas para te conduzir à vida.",
+    "challenge": "Escolha uma orientação de Deus que você já conhece, mas tem adiado. Pratique hoje de forma simples e sincera.",
+    "prayer": "Pai, transforma minha obediência. Que eu não te siga por medo, mas por amor, confiança e gratidão. Amém."
+  },
+  {
+    "day": 24,
+    "theme": "Lugar secreto",
+    "affirmation": "Eu tenho acesso ao Pai. No secreto, sou fortalecido, alinhado e lembrado de quem sou. Minha vida pública precisa nascer da intimidade com Deus.",
+    "verseRef": "Mateus 6:6",
+    "verse": "Ore ao Pai em secreto, e o Pai que vê em secreto recompensará.",
+    "devotional": "O secreto não é um lugar de aparência; é um lugar de verdade. Ali você não precisa impressionar ninguém. Basta chegar diante do Pai com sinceridade, fé e coração aberto.",
+    "challenge": "Separe um momento sem distrações. Fique alguns minutos em oração simples, falando com Deus como Pai.",
+    "prayer": "Pai, leva-me de volta ao lugar secreto. Que minha força não venha da aparência, mas da comunhão contigo. Amém."
+  },
+  {
+    "day": 25,
+    "theme": "Voz do Pastor",
+    "affirmation": "Eu pertenço ao Bom Pastor. Ele me conhece, me chama pelo nome e guia meus passos. Não seguirei vozes que me afastam da verdade.",
+    "verseRef": "João 10:27",
+    "verse": "As ovelhas de Cristo ouvem a sua voz; ele as conhece, e elas o seguem.",
+    "devotional": "Nem toda voz merece obediência. Algumas vozes alimentam medo, pressa, culpa e comparação. A voz do Pastor conduz à verdade, à paz e à obediência fiel.",
+    "challenge": "Antes de tomar uma decisão hoje, pergunte: ‘Essa direção combina com a voz de Jesus e com a Palavra?’. ",
+    "prayer": "Jesus, meu Bom Pastor, ajuda-me a reconhecer tua voz. Guarda-me de confusão, engano e caminhos que não vêm de ti. Amém."
+  },
+  {
+    "day": 26,
+    "theme": "Descanso no Pai",
+    "affirmation": "Eu posso descansar em Deus. Não preciso viver como se tudo dependesse da minha força. Cristo me chama para entregar os fardos e receber descanso para a alma.",
+    "verseRef": "Mateus 11:28",
+    "verse": "Venham a Cristo todos os cansados e sobrecarregados, e ele dará descanso.",
+    "devotional": "Descanso não é abandono de responsabilidade; é confiança no governo de Deus. Uma alma cansada precisa mais do que distração: precisa voltar para Cristo e entregar os pesos que acumulou.",
+    "challenge": "Identifique um peso que você está carregando sozinha. Ore entregando esse fardo a Jesus e escolha uma atitude prática de descanso saudável.",
+    "prayer": "Jesus, eu venho a ti com meus cansaços. Ensina-me a descansar sem culpa e a confiar no teu cuidado. Amém."
+  },
+  {
+    "day": 27,
+    "theme": "Perdão recebido e oferecido",
+    "affirmation": "Eu fui perdoado por Deus e, por isso, escolho caminhar em perdão. Não permitirei que a amargura governe meu coração nem roube minha liberdade.",
+    "verseRef": "Colossenses 3:13",
+    "verse": "Assim como o Senhor perdoou vocês, perdoem também uns aos outros.",
+    "devotional": "Perdoar não significa aprovar o erro nem negar a dor. Significa entregar a justiça nas mãos de Deus e recusar a prisão da amargura. O perdão recebido em Cristo nos ensina um novo caminho.",
+    "challenge": "Ore por uma pessoa ou situação que ainda pesa no seu coração. Peça a Deus sabedoria, cura e liberdade interior.",
+    "prayer": "Senhor, obrigado pelo perdão que recebi. Cura meu coração e ensina-me a liberar perdão sem abandonar a sabedoria. Amém."
+  },
+  {
+    "day": 28,
+    "theme": "Alegria da salvação",
+    "affirmation": "A alegria do Senhor fortalece minha alma. Minha salvação é maior que minhas fases, emoções e circunstâncias. Em Cristo, eu tenho motivo para levantar os olhos.",
+    "verseRef": "Salmos 51:12",
+    "verse": "Restaura-me a alegria da tua salvação e sustenta-me com um espírito disposto.",
+    "devotional": "Há dias em que a alegria precisa ser buscada em Deus, não nas circunstâncias. A alegria da salvação não é euforia passageira; é a lembrança profunda de que Cristo nos resgatou.",
+    "challenge": "Coloque um louvor, cante ou leia um salmo. Faça isso como uma decisão espiritual, não esperando primeiro sentir vontade.",
+    "prayer": "Senhor, restaura em mim a alegria da salvação. Que minha alma se lembre do que Cristo fez e encontre força em ti. Amém."
+  },
+  {
+    "day": 29,
+    "theme": "Santidade com amor",
+    "affirmation": "Eu fui separado para Deus. A santidade não é peso religioso, mas resposta de amor. Meu corpo, minha mente, minhas escolhas e meus relacionamentos pertencem ao Senhor.",
+    "verseRef": "1 Pedro 1:15",
+    "verse": "Assim como Deus é santo, sejam santos em tudo o que fizerem.",
+    "devotional": "Santidade não é aparência de perfeição; é pertencimento. Deus nos chama para uma vida inteira, não dividida. Quanto mais entendemos o amor do Pai, mais desejamos viver de modo que o agrade.",
+    "challenge": "Escolha uma área prática que precisa de alinhamento com Deus: palavras, hábitos, internet, pensamentos ou relacionamentos. Dê um passo concreto hoje.",
+    "prayer": "Pai, santifica minha vida com teu amor. Que minhas escolhas mostrem que eu pertenço a ti. Amém."
+  },
+  {
+    "day": 30,
+    "theme": "Primeiro mês de renovação",
+    "affirmation": "Deus começou uma boa obra em mim e continuará trabalhando. Eu celebro cada passo, mesmo os pequenos. Não caminho pela perfeição, caminho pela graça que me transforma dia após dia.",
+    "verseRef": "Filipenses 1:6",
+    "verse": "Aquele que começou boa obra em vocês irá completá-la até o dia de Cristo.",
+    "devotional": "Chegar ao dia 30 é mais que completar uma etapa; é perceber que constância é construída no secreto. Deus está formando raízes. Celebre o progresso, ajuste o que for necessário e continue.",
+    "challenge": "Revise suas reflexões dos últimos dias. Escreva três mudanças que você percebe e uma área que deseja entregar a Deus no próximo mês.",
+    "prayer": "Senhor, obrigado por este primeiro mês de jornada. Continua tua boa obra em mim e ensina-me a permanecer como filho amado. Amém."
+  }
+];
+
+// Gerar dias 31-365 com temas variados
+const themes = [
+  'Amor incondicional', 'Perdao radical', 'Fé inabalavel', 'Esperanca viva', 'Paz que excede',
+  'Gozo no Senhor', 'Paciencia na prova', 'Bondade ativa', 'Fidelidade constante', 'Mansidão forte',
+  'Dominio proprio', 'Gratidao diária', 'Humildade genuina', 'Coragem santa', 'Compaixao prática',
+  'Generosidade alegre', 'Pureza de coração', 'Integridade inegociavel', 'Obediência amorosa', 'Adoração constante',
+  'Comunháo profunda', 'Servico humilde', 'Testemunho ousado', 'Discipulado fiel', 'Missão pessoal',
+  'Jejum secreto', 'Oração persistente', 'Leitura biblica', 'Meditação diária', 'Vigilancia espiritual',
+  'Armadura de Deus', 'Combate espiritual', 'Vitoria em Cristo', 'Libertação continua', 'Cura interior',
+  'Restauração completa', 'Renovação constante', 'Avivamento pessoal', 'Santificação progressiva', 'Glorificação futura',
+  'Corpo de Cristo', 'Unidade espiritual', 'Amor fraternal', 'Hospitalidade cristã', 'Encorajamento mutuo',
+  'Paciencia relacional', 'Perdao interpessoal', 'Reconciliação necessaria', 'Limites saudáveis', 'Relacionamentos santos',
+  'Casamento cristã', 'Paternidade dedicada', 'Maternidade devotada', 'Amizade leal', 'Mentoria espiritual',
+  'Lideranca servidora', 'Submissão inteligente', 'Autoridade responsavel', 'Influencia positiva', 'Legado eterno',
+  'Mordomia fiel', 'Generosidade sistematica', 'Contentamento genuino', 'Simplicidade voluntária', 'Desapego material',
+  'Trabalho como culto', 'Excelencia profissional', 'Ética inegociavel', 'Criatividade divina', 'Inovação com propósito',
+  'Descanso sabatico', 'Lazer redimido', 'Cultura cristã', 'Arte para glória', 'Beleza que edifica',
+  'Saúde como templo', 'Disciplina corporal', 'Alimentação consciente', 'Exercício como disciplina', 'Cura fisica',
+  'Emocoes saudáveis', 'Inteligencia emocional', 'Cura de traumas', 'Processamento de luto', 'Alegria contagiosa',
+  'Propósito descoberto', 'Chamado especifico', 'Dons espirituais', 'Talentos naturais', 'Oportunidades divinas',
+  'Tempo redimido', 'Prioridades claras', 'Foco inabalavel', 'Produtividade santa', 'Frutificação constante',
+  'Sabedoria prática', 'Discernimento aguado', 'Conselho sabio', 'Decisoes acertadas', 'Direção divina',
+  'Proteção espiritual', 'Refugio seguro', 'Fortaleza inabalavel', 'Segurança em Deus', 'Confiança total',
+  'Provisão divina', 'Milagres cotidianos', 'Sinais e maravilhas', 'Fé sobrenatural', 'Impossiveis de Deus',
+  'Justiça social', 'Defesa dos fracos', 'Voz pelos mudos', 'Ação compassiva', 'Misericórdia prática',
+  'Evangelismo natural', 'Testemunho vivo', 'Palavra oportuna', 'Sementes plantadas', 'Colheita futura',
+  'Segunda vinda', 'Bendita esperança', 'Vida eterna', 'Coroas de glória', 'Reinar com Cristo',
+  'Novo céu', 'Nova terra', 'Tudo novo', 'Fim do sofrimento', 'Glória revelada',
+  'Aleluia eterno', 'Adoração celestial', 'Coroação final', 'Festa do Cordeiro', 'Amor perfeito',
+  'Identidade revelada', 'Semelhança completa', 'Face a face', 'Conhecimento pleno', 'Amor consumado',
+  'Legado de fé', 'Geracoes futuras', 'Influencia eterna', 'Marcas no reino', 'Bem-aventuranca',
+  'Corrida final', 'Combate completo', 'Fé guardada', 'Coroa da justica', 'Bom servo fiel',
+  'Heranca preservada', 'Tesouro no céu', 'Recompensa eterna', 'Aprovação divina', 'Muito bem',
+  'Descanso eterno', 'Paz perfeita', 'Gozo completo', 'Amor sem fim', 'Glória sem veu',
+  'Renovação da alianca', 'Memorial da graça', 'Ceia do Senhor', 'Comunháo com santos', 'Unidade do Espírito',
+  'Batismo no Espírito', 'Poder do alto', 'Unção fresca', 'Fogo consumidor', 'Água viva',
+  'Pão do céu', 'Videira verdadeira', 'Pastor eterno', 'Porta das ovelhás', 'Caminho da vida',
+  'Luz do mundo', 'Sal da terra', 'Fermento no mundo', 'Carta de Cristo', 'Embaixadores',
+  'Pedras vivas', 'Templo do Espírito', 'Sacerdocio real', 'Nação santa', 'Povo adquirido',
+  'Noiva do Cordeiro', 'Preparação nupcial', 'Vestidos brancos', 'Azeite nas vasilhás', 'Lampadas acesas',
+  'Vigilantes na torre', 'Sentinelas do dia', 'Atalaias da noite', 'Arautos da manhã', 'Testemunhas fieis',
+  'Cartas vivas', 'Epistolas de Cristo', 'Luminarias no mundo', 'Palavra da vida', 'Candelabro aceso',
+  'Raizes profundas', 'Frutos em estação', 'Folhas que não murcham', 'Seiva da videira', 'Poda necessaria',
+  'Crescimento saudavel', 'Maturidade em Cristo', 'Estatura completa', 'Medida da plenitude', 'Unidade na fé',
+  'Conhecimento do Filho', 'Homem perfeito', 'Cristo formado', 'Imagem do invisivel', 'Primogenito entre muitos',
+  'Conformados a imagem', 'Semelhança do Filho', 'Glória transformadora', 'De glória em glória', 'Espelho da alma',
+  'Rosto descoberto', 'Contemplação santa', 'Intimidade com Deus', 'Lugar secreto', 'Presenca constante',
+  'Face a face', 'Voz que chama', 'Ovelha que ouve', 'Pastor que guia', 'Veredas da justica',
+  'Vale da sombra', 'Vara e cajado', 'Mesa preparada', 'Calice transbordante', 'Bondade e misericordia',
+  'Casa do Senhor', 'Para sempre', 'Amém e Amém', 'Aleluia', 'Maranata',
+  'Graca e paz', 'Misericórdia e graça', 'Fé e esperança', 'Amor e verdade', 'Justiça e juizo',
+  'Santidade e poder', 'Glória e honra', 'Louvor e ação de graças', 'Adoração e reverencia', 'Temor e tremor',
+  'Obediência e sacrificio', 'Oferta agradavel', 'Culto racional', 'Sacerdocio santo', 'Espiritual e santo',
+  'Vivo e eficaz', 'Mais cortante', 'Penetra ate dividir', 'Discerne intencoes', 'Julga pensamentos',
+  'Nada oculto', 'Tudo manifesto', 'Diante de Deus', 'Prestaremos contas', 'Cada um dara',
+  'Obras manifestas', 'Fogo provara', 'Galardao recebido', 'Coroa da vida', 'Diadema da justica',
+  'Heranca incorruptivel', 'Reservada nos céus', 'Guardada pelo poder', 'Mediante a fé', 'Para a salvação',
+  'Ultimo tempo', 'Muitos anticristos', 'Permanecemos nele', 'Confiança no juizo', 'Ousadia na vinda',
+  'Sempre com o Senhor', 'Consolai-vos', 'Esperanca bendita', 'Aparecimento da glória', 'Grande Deus e Salvador',
+  'Graca que se manifestou', 'Ensinando a renunciar', 'Viver sensatamente', 'Justo e piedoso', 'Aguardando a bendita',
+  'Combati o bom combate', 'Acabei a carreira', 'Guardei a fé', 'Desde agora', 'Justo Juiz',
+  'Não somente a mim', 'Aos que amam', 'Sua vinda', 'Coroa da justica', 'Senhor da glória',
+  'Rei dos reis', 'Senhor dos senhores', 'O unico que tem', 'Imortalidade', 'Habita na luz',
+  'Inacessivel', 'Nenhum homem viu', 'Nem pode ver', 'A quem seja honra', 'Poder eterno',
+  'Amém', 'Aleluia', 'Salvação', 'Glória', 'Honra',
+  'Poder', 'Ao nosso Deus', 'Para todo o sempre', 'Amém', 'Maranata',
+  'Ora vem Senhor Jesus', 'A graça do Senhor', 'Seja com todos', 'Amém', 'Fim'
+];
+
+const verses = [
+  { ref: 'Salmos 23:1', text: 'O Senhor e o meu pastor e nada me faltara.' },
+  { ref: 'Isaias 43:1', text: 'Não temas, pois eu te remi; chamei-te pelo teu nome, tu es meu.' },
+  { ref: 'Jeremias 29:11', text: 'Eu sei os planos que tenho para vocês, planos de faze-los prosperar.' },
+  { ref: 'Salmos 91:1', text: 'Aquele que hábita no esconderijo do Altissimo, a sombra do Onipotente descansara.' },
+  { ref: 'Filipenses 4:13', text: 'Tudo posso naquele que me fortalece.' },
+  { ref: 'Josue 1:9', text: 'Não fui eu que ordenei a você? Seja forte e corajoso!' },
+  { ref: 'Salmos 46:1', text: 'Deus e o nosso refugio e fortaleza, socorro bem presente na angustia.' },
+  { ref: 'Isaias 40:31', text: 'Mas os que esperam no Senhor renovarao as suas forças.' },
+  { ref: 'Salmos 37:4', text: 'Deleita-te tambem no Senhor, e ele satisfara os desejos do teu coração.' },
+  { ref: 'Mateus 11:28', text: 'Vinde a mim, todos os que estais cansados e oprimidos, e eu vos aliviarei.' },
+  { ref: 'João 14:27', text: 'Deixo-vos a paz, a minha paz vos dou; não vo-la dou como o mundo a da.' },
+  { ref: 'Salmos 139:14', text: 'Eu te louvarei, porque de um modo assombroso e tao maravilhoso fui formado.' },
+  { ref: 'Romanos 8:28', text: 'Sabemos que todas as coisas cooperam para o bem daqueles que amam a Deus.' },
+  { ref: '2 Corintios 12:9', text: 'A minha graça te basta, porque o meu poder se aperfeiçoa na fraqueza.' },
+  { ref: 'Salmos 34:8', text: 'Provai e vede que o Senhor e bom; bem-aventurado o homem que nele se refugia.' },
+  { ref: 'Isaias 41:10', text: 'Não temas, porque eu sou contigo; não te assombres, porque eu sou teu Deus.' },
+  { ref: 'Salmos 27:1', text: 'O Senhor e a minha luz e a minha salvação; a quem temerei?' },
+  { ref: 'Deuteronomio 31:6', text: 'Sede fortes e corajosos, não tenhais medo, porque o Senhor vosso Deus vai convosco.' },
+  { ref: 'Salmos 118:6', text: 'O Senhor e por mim; não temerei. Que me pode fazer o homem?' },
+  { ref: '1 João 4:4', text: 'Filhinhos, sois de Deus e ja os tendes vencido, porque maior e o que está em vos.' },
+];
+
+// Preencher dias restantes (31-365)
+for (let i = 31; i <= 365; i++) {
+  const themeIndex = (i - 31) % themes.length;
+  const theme = themes[themeIndex];
+  const verse = verses[(i - 31) % verses.length];
+  journey.push({
+    day: i,
+    theme: theme,
+    affirmation: 'Dia ' + i + ': ' + theme + '. Em Cristo, minha identidade está firmada na Rocha eterna. Não vivo pela pressão das circunstâncias; vivo como filho amado do Pai.',
+    verseRef: verse.ref,
+    verse: verse.text,
+    devotional: 'Neste dia da jornada, Deus te chama a crescer em ' + theme.toLowerCase() + '. Cada etapa é uma oportunidade de renovar a mente, fortalecer a fé e praticar a Palavra com sinceridade.',
+    challenge: 'Hoje, pratique ' + theme.toLowerCase() + ' de forma intencional. Escolha uma situação concreta em que você pode viver essa verdade.',
+    prayer: 'Senhor, ensina-me sobre ' + theme.toLowerCase() + '. Que esta verdade não fique só na mente, mas apareça nas minhas escolhas. Amém.'
+  });
+}
+
+
+const $ = (id) => document.getElementById(id);
+
+function todayKey(){
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+const niceDate = () => new Date().toLocaleDateString('pt-BR', { weekday:'long', day:'2-digit', month:'long', year:'numeric' });
+function getState(){ try { return JSON.parse(localStorage.getItem('herdeiro-state') || '{}'); } catch(e) { return {}; } }
+function setState(state){ localStorage.setItem('herdeiro-state', JSON.stringify(state)); }
+
+function getCompleted(){
+  try {
+    const raw = JSON.parse(localStorage.getItem('herdeiro-completed') || '[]');
+    if(!Array.isArray(raw)) return [];
+    return raw.map((entry, index) => {
+      if(typeof entry === 'string') return { date: entry, day: index + 1 };
+      return { date: entry.date, day: Number(entry.day) || index + 1, completedAt: entry.completedAt || null };
+    }).filter(entry => entry.date && entry.day >= 1 && entry.day <= 365);
+  } catch(e) { return []; }
+}
+function setCompleted(entries){ localStorage.setItem('herdeiro-completed', JSON.stringify(entries)); }
+function getReflections(){ try { return JSON.parse(localStorage.getItem('herdeiro-reflections') || '{}'); } catch(e) { return {}; } }
+function setReflections(data){ localStorage.setItem('herdeiro-reflections', JSON.stringify(data)); }
+
+function getTodayJourney(){
+  const state = getState();
+  const key = todayKey();
+  if(!state.startDate) state.startDate = key;
+  state.lastOpened = key;
+  setState(state);
+
+  const completed = getCompleted();
+  const todayEntry = completed.find(entry => entry.date === key);
+  if(todayEntry) return journey[Math.min(todayEntry.day - 1, 364)];
+
+  const nextDay = Math.min(completed.length + 1, 365);
+  return journey[nextDay - 1];
+}
+
+let today = getTodayJourney();
+
+function renderToday(){
+  today = getTodayJourney();
+  const key = todayKey();
+  const completed = getCompleted();
+  const confirmed = completed.some(entry => entry.date === key);
+  const reflections = getReflections();
+  $('todayDate').textContent = niceDate();
+  $('todayTheme').textContent = 'Dia ' + today.day + ' · ' + today.theme;
+  $('affirmationText').textContent = today.affirmation;
+  $('verseRef').textContent = today.verseRef;
+  $('verseText').textContent = '"' + today.verse + '"';
+  $('devotionalText').textContent = today.devotional;
+  $('challengeText').textContent = today.challenge;
+  $('prayerText').textContent = today.prayer;
+  $('reflectionText').value = reflections[key] || '';
+  $('confirmBtn').textContent = confirmed ? '✓ Foco confirmado hoje' : '✓ Confirmei meu foco';
+  $('confirmBtn').disabled = confirmed;
+}
+
+function renderHome(){
+  const completed = getCompleted();
+  const completedDays = completed.map(entry => entry.day);
+  const total = Math.min(new Set(completedDays).size, 365);
+  $('progressLabel').textContent = total + ' de 365 etapas completas';
+  $('progressBar').style.width = ((total / 365) * 100) + '%';
+
+  const firstDay = Math.max(1, today.day - 3);
+  const lastDay = Math.min(365, firstDay + 6);
+  const showDays = [];
+  for (let day = firstDay; day <= lastDay; day++) showDays.push(journey[day - 1]);
+
+  $('journeyDays').innerHTML = showDays.map(item => {
+    const done = completedDays.includes(item.day);
+    const isToday = today.day === item.day;
+    return '<div class="day-dot ' + (done ? 'done' : '') + (isToday ? ' today' : '') + '">Dia ' + item.day + '<br>' + (done ? '✓' : isToday ? 'Hoje' : '○') + '</div>';
+  }).join('');
+
+  if (total >= 365) {
+    $('nextStep').textContent = 'Você completou a jornada! Continue voltando para reforçar sua identidade em Cristo.';
+  } else {
+    $('nextStep').textContent = 'Próxima etapa: Dia ' + today.day + ' — ' + today.theme + '.';
+  }
+  renderBadges(total);
+}
+
+function renderBadges(total){
+  const data = [
+    { emoji:'🌱', title:'Primeiro Passo', desc:'confirmou 1 etapa', earned: total >= 1 },
+    { emoji:'🔥', title:'Constância', desc:'confirmou 7 etapas', earned: total >= 7 },
+    { emoji:'📅', title:'Primeiro Mês', desc:'confirmou 30 etapas', earned: total >= 30 },
+    { emoji:'🧠', title:'Mentalidade Renovada', desc:'chegou a 90 etapas', earned: total >= 90 },
+    { emoji:'👑', title:'Filho, não escravo', desc:'completou 180 etapas', earned: total >= 180 },
+    { emoji:'💎', title:'Herdeiro em Cristo', desc:'completou 365 etapas', earned: total >= 365 }
+  ];
+  $('badges').innerHTML = data.map(b => '<div class="badge ' + (b.earned ? 'earned' : '') + '"><div class="emoji">' + b.emoji + '</div><div><strong>' + b.title + '</strong><span>' + (b.earned ? 'Conquista liberada' : b.desc) + '</span></div></div>').join('');
+}
+
+function renderHistory(){
+  const completed = getCompleted().slice().sort((a, b) => b.date.localeCompare(a.date));
+  const reflections = getReflections();
+  if(!completed.length){ $('historyList').innerHTML = '<p class="muted">Ainda não há histórico. Confirme seu foco hoje para começar.</p>'; return; }
+
+  $('historyList').innerHTML = completed.map(entry => {
+    const item = journey[Math.min(entry.day - 1, 364)];
+    const ref = reflections[entry.date] || 'Sem reflexão salva neste dia.';
+    const brDate = new Date(entry.date + 'T00:00:00').toLocaleDateString('pt-BR');
+    return '<div class="history-item"><strong>' + brDate + ' · Dia ' + item.day + ' — ' + escapeHtml(item.theme) + '</strong><p>' + escapeHtml(item.affirmation) + '</p><p><b>Reflexão:</b> ' + escapeHtml(ref) + '</p></div>';
+  }).join('');
+}
+
+function confirmFocus(){
+  const key = todayKey();
+  let completed = getCompleted();
+  if(!completed.some(entry => entry.date === key)) {
+    completed.push({ date: key, day: today.day, completedAt: new Date().toISOString() });
+  }
+  setCompleted(completed);
+  saveReflection(false);
+  toast('Foco confirmado! Volte amanhã para continuar a jornada.');
+  renderAll();
+}
+
+function saveReflection(show = true){
+  const text = $('reflectionText').value.trim();
+  const data = getReflections();
+  const key = todayKey();
+  if(text) data[key] = text; else delete data[key];
+  setReflections(data);
+  if(show) toast('Reflexão salva.');
+  renderHistory();
+}
+
+async function shareToday(){
+  const message = 'De Escravo a Herdeiro — Dia ' + today.day + ': ' + today.theme + '\n\n' + today.affirmation + '\n\n' + today.verseRef + ': ' + today.verse + '\n\nDesafio: ' + today.challenge;
+  try {
+    if(navigator.share){ await navigator.share({ title: 'De Escravo a Herdeiro', text: message }); }
+    else { await navigator.clipboard.writeText(message); toast('Mensagem copiada para compartilhar.'); }
+  } catch(e){
+    try { await navigator.clipboard.writeText(message); toast('Mensagem copiada.'); } catch(_) { toast('Não foi possível compartilhar agora.'); }
+  }
+}
+
+function exportBackup(){
+  const backup = {
+    app: 'De Escravo a Herdeiro',
+    exportedAt: new Date().toISOString(),
+    state: getState(),
+    completed: getCompleted(),
+    reflections: getReflections(),
+    theme: localStorage.getItem('herdeiro-theme') || 'dark'
+  };
+  const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'backup-de-escravo-a-herdeiro-' + todayKey() + '.json';
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+  toast('Backup exportado.');
+}
+
+function clearHistory(){
+  if(confirm('Tem certeza que deseja apagar histórico, progresso e reflexões?')){
+    localStorage.removeItem('herdeiro-completed');
+    localStorage.removeItem('herdeiro-reflections');
+    localStorage.removeItem('herdeiro-state');
+    today = getTodayJourney();
+    renderAll();
+    toast('Histórico limpo.');
+  }
+}
+
+function goTab(tab){
+  document.querySelectorAll('.tab-page').forEach(el => el.classList.add('hidden'));
+  $('tab-' + tab).classList.remove('hidden');
+  document.querySelectorAll('.nav-tab').forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tab));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  renderAll();
+}
+
+function toggleTheme(){
+  document.body.classList.toggle('dark');
+  const dark = document.body.classList.contains('dark');
+  localStorage.setItem('herdeiro-theme', dark ? 'dark' : 'light');
+  $('themeBtn').textContent = dark ? '☀️' : '🌙';
+}
+
+function loadTheme(){
+  const saved = localStorage.getItem('herdeiro-theme');
+  if(saved === 'dark' || !saved) document.body.classList.add('dark');
+  if(saved === 'light') document.body.classList.remove('dark');
+  $('themeBtn').textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+}
+
+function enterJourney(){
+  const screen = $('entryScreen');
+  localStorage.setItem('herdeiro-entry-seen', 'true');
+  if(screen) screen.classList.add('hide');
+}
+
+function loadEntryScreen(){
+  const screen = $('entryScreen');
+  if(screen && localStorage.getItem('herdeiro-entry-seen') === 'true') screen.classList.add('hide');
+}
+
+function toast(msg){
+  const el = $('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(window.__toastTimer);
+  window.__toastTimer = setTimeout(() => el.classList.remove('show'), 2400);
+}
+
+function escapeHtml(str){ return String(str).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[c])); }
+
+function renderAll(){ renderToday(); renderHome(); renderHistory(); }
+
+$('themeBtn').addEventListener('click', toggleTheme);
+loadTheme();
+loadEntryScreen();
+renderAll();
+</script>
+</body>
+</html>
